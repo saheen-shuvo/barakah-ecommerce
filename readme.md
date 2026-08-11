@@ -1,357 +1,474 @@
 # Barakah Islamic E-Commerce Platform
 
-A full-stack MERN e-commerce application specializing in Islamic wall decor products (wall clocks, canvas, wall art, and related items). Built with modern web technologies and integrated with courier logistics, real-time notifications, and advanced analytics.
+A full-stack MERN e-commerce platform for selling Islamic wall decor products such as wall clocks, canvas, wall art, and related products.
 
-**Live:** [https://barakahislamic.me](https://barakahislamic.me)
+The platform includes a customer storefront, admin dashboard, product and order management, analytics, courier integrations, authentication, reviews, and marketing analytics.
 
 ---
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 ### Frontend
-- **Framework:** Next.js (App Router)
-- **UI Library:** React
-- **Styling:** Tailwind CSS, DaisyUI
-- **Analytics & Tracking:** Google Tag Manager (GTM), Meta Pixel
+
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- DaisyUI
+- Google Tag Manager
+- Meta Pixel
 
 ### Backend
-- **Runtime:** Node.js
-- **Framework:** Express.js
-- **Database:** MongoDB
-- **Media Storage:** Cloudinary (admin product image uploads)
-- **Courier Integration:** Steadfast API
+
+- Node.js
+- Express.js
+- MongoDB
+- Cloudinary
+- Steadfast Courier API
+- Pathao Courier API
+- Bangladesh Delivery Corporation (BDC) API
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
-```
-barakah-ecommerce-project/
-├─ barakah-client/          # Next.js frontend (Vercel-deployed)
-├─ barakah-server/          # Express API server (VPS-deployed)
-├─ package.json
-└─ README.md
-```
 
----
-
-## ✨ Features
-
-### 👤 Customer-Facing Storefront
-
-- **Homepage:** Dynamic category sections with featured products
-- **Product Browsing:** Category and subcategory navigation
-- **Search:** Real-time product search by name
-- **Product Details:** Comprehensive product pages with related products
-- **Cart Management:** Add/remove/update quantities with local persistence
-- **Checkout Form:** Delivery address collection and order placement
-- **Payment Methods:** Support for `bkash`, `nagad`, and COD (Cash on Delivery)
-- **Reviews Carousel:** Customer reviews displayed on product pages
-
-### 🔐 Authentication
-
-- User registration and secure login
-- Local state persistence for authentication
-- Role-based access control
-- Admin dashboard protection with credentials
-
-### 📦 Admin Dashboard
-
-#### Order Management
-- **Dashboard Stats:** Real-time overview of products, orders, and revenue
-- **Order List:** View all orders with status tracking
-- **Order Filtering:** Filter and search orders by customer info
-- **Status Updates:** Mark orders as delivered
-- **Courier Integration:** One-click "Send to Steadfast" button to dispatch orders to courier
-- **Real-Time Notifications:** Instant alerts for admin and moderators when new orders arrive
-
-#### Analytics & Reporting
-- **Revenue Filtering:** Filter revenue by custom date range or predefined timeframes
-- **Analytics Cards:** Breakdown by delivered, cancelled, and total revenue
-- **Date-Based Analytics:** `getOrdersByDate` and `getDeliveredAnalytics` endpoints with precise filtering
-- **CSV Export:** Download complete order reports including:
-  - All orders with customer details
-  - Order status (delivered/cancelled/pending)
-  - Revenue per order and aggregated totals
-  - Date-based breakdown
-  - Excel-compatible UTF-8 BOM formatting
-
-#### Product Management
-- **Create Products:** Add new products with images (via Cloudinary)
-- **Edit Products:** Update product details and inventory
-- **Delete Products:** Remove products from catalog
-- **Pagination:** Efficient product list browsing
-
-### 📊 Analytics & Marketing
-
-- **Google Tag Manager (GTM):** Full event tracking implementation
-- **Meta Pixel:** Conversion and user behavior tracking
-- **Event Tracking:**
-  - Product views
-  - Add to cart events
-  - Purchase/order completion
-  - Custom conversion funnels
-- **Performance Analytics:** Track marketing campaigns and user journey
+barakah-demo-project/
+├── barakah-client/          # Next.js frontend
+├── barakah-server/          # Express.js backend
+├── .gitignore
+└── README.md
 
 ---
 
-## 🔧 Backend API Overview
+# Features
 
-### Base URL
-Set via `NEXT_PUBLIC_API_URL` environment variable in client
+## Customer Storefront
 
-### Product Endpoints
-```
-GET    /api/products              # Fetch all products
-GET    /api/products/:id          # Fetch product by ID
-POST   /api/products              # Create product (admin)
-PATCH  /api/products/:id          # Update product (admin)
-DELETE /api/products/:id          # Delete product (admin)
-```
+* Dynamic homepage
+* Product categories and subcategories
+* Product search
+* Product details
+* Related products
+* Shopping cart
+* Persistent cart
+* Checkout
+* Customer order placement
+* bKash payment option
+* Nagad payment option
+* Cash on Delivery
+* Customer reviews
 
-### Order Endpoints
-```
-GET    /api/orders                # Fetch all orders (admin)
-POST   /api/orders                # Create new order
-PATCH  /api/orders/:id/deliver    # Mark order as delivered
-POST   /api/orders/:id/steadfast  # Send order to Steadfast courier
-GET    /api/orders/analytics      # Fetch order analytics (with date filtering)
-```
+## Authentication
 
-### Analytics Endpoints
-```
-GET    /api/orders/analytics/byDate          # Orders filtered by date
-GET    /api/orders/analytics/delivered       # Delivered orders analytics
-POST   /api/orders/export/csv                # Export orders as CSV
-```
+* User registration
+* User login
+* Authentication state management
+* Role-based access control
+* Protected admin dashboard
 
-### Authentication Endpoints
-```
-POST   /api/auth/register         # User registration
-POST   /api/auth/login            # User login
-```
+## Admin Dashboard
 
-### Reviews Endpoints
-```
-GET    /api/reviews               # Fetch all reviews
-```
+### Product Management
 
----
+* Add products
+* Upload product images
+* Edit products
+* Delete products
+* Update inventory
+* Product pagination
 
-## 🚀 Key Features in Detail
+### Order Management
 
-### Steadfast Courier Integration
+* View orders
+* Search and filter orders
+* View order details
+* Update order status
+* Mark orders as delivered
+* Send orders to courier services
 
-**One-Click Order Dispatch:**
-- Admin clicks "Send to Steadfast" button in order details
-- System automatically formats order data per Steadfast API requirements
-- Order details are transmitted (customer info, address, products, COD amount)
-- System receives tracking number and updates order status
-- Order marked as "sent to courier" in dashboard
+### Analytics
 
-**Automatic Updates:**
-- Order status synchronized with courier
-- Admin notified of successful dispatch
+* Total orders
+* Revenue analytics
+* Delivered revenue
+* Cancelled revenue
+* Date-based analytics
+* Custom date-range filtering
+* Order status statistics
+* CSV order export
 
-### Real-Time Order Notifications
+### Courier Integration
 
-- **Instant Alerts:** Admin and moderator roles receive notifications when new orders are placed
-- **Notification System:** Integrated notification middleware
-- **Alert Details:** Customer name, order ID, total amount, and payment method
+The backend supports courier integrations for order dispatch and tracking.
 
-### Advanced Analytics Dashboard
+Configured integrations include:
 
-**Date Range Filtering:**
-- Select custom date ranges for revenue analysis
-- Predefined timeframes (Today, This Week, This Month, Last 30 Days)
-- Real-time recalculation of metrics
+* Steadfast
+* Pathao
+* BD Courier for Fraud Checking
 
-**Revenue Breakdown:**
-- Delivered revenue (completed orders)
-- Cancelled revenue (cancelled orders)
-- Total orders revenue (all orders)
-- Order count per status
-
-**CSV Export Feature:**
-- Download complete order history with analytics
-- Includes customer details, order status, amounts, and dates
-- Excel-compatible formatting with UTF-8 BOM
-- Useful for accounting, customer service, and business analysis
+Courier API credentials must be configured through environment variables.
 
 ---
 
-## 📱 Deployment Architecture
+# Analytics & Tracking
 
-### Frontend
-- **Platform:** Vercel
-- **Framework:** Next.js
-- **Auto-deploy:** From GitHub on push to main branch
-- **Environment:** Production-optimized build
+The frontend includes:
 
-### Backend
-- **Platform:** VPS (Virtual Private Server)
-- **Server:** Node.js + Express
-- **Database:** MongoDB (cloud or self-hosted)
-- **Courier API Integration:** Steadfast (requires IP whitelisting)
+* Google Tag Manager
+* Meta Pixel
+* Product view tracking
+* Add-to-cart tracking
+* Purchase/order tracking
+* UTM tracking
 
-### Production Considerations
-- **API Resilience:** Handling shared hosting resource constraints
-- **IP Whitelisting:** Coordinated with courier provider for API access
-- **Environment Variables:** Secure config for database, API keys, and Cloudinary credentials
+Analytics credentials and IDs must be configured through environment variables.
 
 ---
 
-## 🔐 Security & Best Practices
+# Backend API
 
-- **Role-Based Access Control:** Admin-only features protected by authentication
-- **Environment Variables:** Sensitive data stored in `.env.local` and server config
-- **Image Optimization:** Cloudinary-hosted images with responsive serving
-- **Local State Management:** Cart persistence without exposing sensitive data
-- **API Security:** CORS configuration and request validation
+The frontend communicates with the Express backend through the API URL configured in:
+
+#env
+
+NEXT_PUBLIC_API_URL
+
+
+## Products
+
+
+GET     /api/products
+GET     /api/products/:id
+POST    /api/products
+PATCH   /api/products/:id
+DELETE  /api/products/:id
+
+
+## Orders
+
+GET     /api/orders
+POST    /api/orders
+PATCH   /api/orders/:id/deliver
+POST    /api/orders/:id/steadfast
+GET     /api/orders/analytics
+GET     /api/orders/analytics/byDate
+GET     /api/orders/analytics/delivered
+POST    /api/orders/export/csv
+
+## Authentication
+
+POST    /api/auth/register
+POST    /api/auth/login
+
+## Reviews
+
+GET     /api/reviews
 
 ---
 
-## 📈 Performance Metrics
+# Requirements
 
-- **Frontend:** Optimized Next.js builds with image optimization
-- **Database:** Indexed MongoDB queries for fast product and order retrieval
-- **Analytics:** Lightweight GTM and Meta Pixel implementations
-- **CSV Generation:** Efficient server-side export without blocking main thread
+## Recommended Node.js Version
+
+Node.js 20.x or newer.
+
+The project has been tested with Node.js 20.
+
+## Frontend
+
+* Node.js
+* npm
+
+## Backend
+
+* Node.js
+* npm
+* MongoDB / MongoDB Atlas
 
 ---
 
-## 🛠️ Development Setup
+# Local Development Setup
 
-### Prerequisites
-- Node.js 16+
-- MongoDB 4.4+
-- npm or yarn
+## 1. Clone the repository
 
-### Client Setup
-```bash
+git clone <REPOSITORY_URL>
+cd barakah-demo-project
+
+---
+
+# Frontend Setup
+
 cd barakah-client
 npm install
-npm run dev
-```
 
-### Server Setup
-```bash
+Create a `.env.local` file based on:
+
+.env.example
+
+Example:
+
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=your_cloudinary_upload_preset
+NEXT_PUBLIC_API_URL=http://localhost:8000
+
+### Development
+
+The project can be started with Webpack using:
+
+npm run dev -- --webpack
+
+Then open:
+
+http://localhost:3000
+
+### Production Build
+
+npm run build
+
+Start the production server:
+
+npm start
+
+---
+
+# Backend Setup
+
 cd barakah-server
 npm install
+
+Create a `.env` file based on:
+
+.env.example
+
+Example:
+
+PORT=8000
+
+DB_NAME=your_database_name
+MONGODB_URI=your_mongodb_connection_string
+
+STEADFAST_API_URL=https://portal.packzy.com/api/v1
+STEADFAST_API_KEY_NARAYANGANJ=your_api_key
+STEADFAST_SECRET_KEY_NARAYANGANJ=your_secret_key
+
+STEADFAST_API_KEY_BADDA=your_api_key
+STEADFAST_SECRET_KEY_BADDA=your_secret_key
+
+STEADFAST_API_KEY_JAMALPUR=your_api_key
+STEADFAST_SECRET_KEY_JAMALPUR=your_secret_key
+
+GMAIL_USER=your_email@gmail.com
+GMAIL_APP_PASSWORD=your_app_password
+ADMIN_EMAIL=your_admin_email@gmail.com
+
+BDC_API_KEY=your_bdc_api_key
+
+PATHAO_BASE_URL=https://api-hermes.pathao.com
+PATHAO_CLIENT_ID=your_client_id
+PATHAO_CLIENT_SECRET=your_client_secret
+PATHAO_USERNAME=your_username
+PATHAO_PASSWORD=your_password
+PATHAO_STORE_ID=your_store_id
+
+### Start Backend
+
 npm start
-# or for development
+
+For development:
+
 npm run dev
-```
 
-### Environment Variables
-
-**Client (.env.local):**
-```
-NEXT_PUBLIC_API_URL=http://localhost:5000
-NEXT_PUBLIC_GTM_ID=GTM-XXXXXXXXX
-```
-
-**Server (.env):**
-```
-MONGODB_URI=mongodb://...
-PORT=5000
-JWT_SECRET=your_secret_key
-CLOUDINARY_NAME=your_cloudinary
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-STEADFAST_API_KEY=your_steadfast_key
-STEADFAST_API_URL=https://api.steadfast.com.bd
-```
+The backend will run on the port configured in `.env`.
 
 ---
 
-## 📊 Use Cases
+# Environment Variables
 
-### For Business Owners
-- **Real-time order tracking:** Know when orders arrive and dispatch status
-- **Revenue analysis:** Track performance by date, time period, and order status
-- **Customer management:** Quick CSV export for customer analytics
-- **Marketing integration:** GTM and Meta Pixel for conversion optimization
+The repository contains:
 
-### For Customers
-- **Seamless shopping:** Browse, search, and purchase Islamic decor products
-- **Flexible checkout:** Multiple payment method options
-- **Product trust:** View customer reviews before purchase
-- **Quick ordering:** Add to cart and checkout in minutes
+.env.example
 
----
+for both the frontend and backend.
 
-## 🎯 Future Enhancements
+The actual environment files are intentionally excluded from Git.
 
-- Online payment gateway integration (SSLCommerz/Stripe/PayPal)
-- Advanced inventory management and stock alerts
-- Customer account dashboard with order history
-- Email and SMS notifications for order updates
-- Multi-vendor support
-- AI-powered product recommendations
-- Mobile app (React Native)
+Never commit:
+
+.env
+.env.local
+.env.production
+
+Environment variables must be configured separately for each deployment environment.
 
 ---
 
-## 🐛 Known Limitations & Notes
+# Database
 
-- **Payment Gateway:** Currently supports COD, bKash manual, and Nagad manual payments. No real-time online payment processing yet.
-- **Shared Hosting:** Backend currently optimized for shared hosting with resource monitoring
-- **Courier Integration:** Steadfast API requires server IP whitelisting (coordinate with provider)
+The application uses MongoDB.
 
----
+MongoDB can be hosted through:
 
-## 📝 Project Structure Details
+* MongoDB Atlas
+* A self-hosted MongoDB server
 
-### Key Directories (Frontend)
-```
-barakah-client/
-├─ app/                    # Next.js App Router pages
-├─ components/             # Reusable React components
-├─ hooks/                  # Custom React hooks (useCart, useAuth, etc.)
-├─ pages/                  # API routes (if used)
-├─ public/                 # Static assets
-├─ styles/                 # Global Tailwind configuration
-└─ lib/                    # Utility functions and API client
-```
+The MongoDB connection string is configured through:
 
-### Key Directories (Backend)
-```
-barakah-server/
-├─ models/                 # MongoDB schemas (Product, Order, User, Review)
-├─ routes/                 # API route handlers
-├─ controllers/            # Business logic
-│  ├─ orderController.js   # Order CRUD + Steadfast integration
-│  ├─ analyticsController.js  # Revenue filtering, date-based analytics
-│  └─ exportController.js   # CSV generation
-├─ middleware/             # Auth, notifications, validation
-├─ config/                 # Database, Cloudinary, Steadfast config
-└─ server.js              # Express app initialization
-```
+MONGODB_URI
+
+The database credentials are not included in this repository.
 
 ---
 
-## 👨‍💻 Author
+# Image Storage
 
-**Saheen** - Full-Stack MERN Developer  
-📍 Dhaka, Bangladesh  
-🎓 BSc Software Engineering, Daffodil International University  
-🌍 Erasmus+ Scholar (Varna University of Management, Bulgaria)
+Product images are uploaded through Cloudinary.
+
+Configure the frontend Cloudinary variables in:
+
+barakah-client/.env.local
+
+Required variables:
+
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=your_cloudinary_upload_preset
 
 ---
 
-## 📄 License
+# Production Deployment
 
-This project is proprietary and currently not open source.
+The application consists of two services:
+
+Frontend
+Next.js
+     ↓
+Backend
+Express.js
+     ↓
+MongoDB
+
+
+For shared hosting/cPanel deployment, the frontend and backend should be configured as Node.js applications.
+
+### Frontend
+
+The Next.js application should run in production mode:
+
+npm run build
+npm start
+
+### Backend
+
+The Express application should run using its configured startup file and production environment variables.
+
+The exact cPanel configuration depends on the hosting provider's Node.js application settings.
 
 ---
 
-## 📞 Support & Contact
+# Security
 
-For questions, feature requests, or support regarding Barakah Islamic, please reach out via:
-- **Email:** saheenshuvo182@gmail.com
-- **Website:** https://www.saheenalamshuvo.me
+Never expose or commit:
+
+* MongoDB credentials
+* JWT secrets
+* Courier API keys
+* Courier secret keys
+* Gmail app passwords
+* Cloudinary API secrets
+* BDC API keys
+* Pathao credentials
+* Other private API credentials
+
+Use environment variables for all sensitive configuration.
+
 ---
 
-**Last Updated:** June 2026  
-**Version:** 1.0.0 (Production)
+# Important Deployment Notes
+
+### Courier APIs
+
+Some courier integrations may require server IP whitelisting.
+
+The hosting/server public IP may need to be provided to the courier provider before the API can be used.
+
+### CORS
+
+The backend must allow requests from the production frontend domain.
+
+Update the backend CORS configuration when changing the frontend domain.
+
+### API URL
+
+The production frontend must use the production backend URL:
+
+NEXT_PUBLIC_API_URL=https://your-api-domain.com
+
+---
+
+# Troubleshooting
+
+## Frontend does not start
+
+Try:
+
+rm -rf node_modules
+npm install
+npm run dev -- --webpack
+
+For production:
+
+npm run build
+npm start
+
+## Backend cannot connect to MongoDB
+
+Check:
+
+MONGODB_URI
+
+Make sure:
+
+* MongoDB is running or MongoDB Atlas is accessible
+* Credentials are correct
+* The server IP is allowed by MongoDB Atlas
+* The database name is correct
+
+## API requests fail
+
+Check:
+
+NEXT_PUBLIC_API_URL
+
+Make sure it points to the correct backend URL.
+
+Also verify the backend CORS configuration.
+
+---
+
+# Source Code Handover
+
+This repository contains the source code for:
+
+* Next.js frontend
+* Express.js backend
+* Configuration examples
+* Project documentation
+
+Sensitive credentials and production environment files are intentionally excluded.
+
+The client should configure their own:
+
+* Database
+* Cloudinary account
+* Courier accounts/API credentials
+* Email account
+* Analytics accounts
+* Production environment variables
+
+---
+
+# License
+
+This project is provided to the client as part of the agreed source-code handover.
+
+The usage, modification, deployment, and ownership rights are subject to the terms agreed between the developer and client.
