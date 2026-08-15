@@ -465,10 +465,3 @@ The client should configure their own:
 * Analytics accounts
 * Production environment variables
 
----
-
-# License
-
-This project is provided to the client as part of the agreed source-code handover.
-
-The usage, modification, deployment, and ownership rights are subject to the terms agreed between the developer and client.
