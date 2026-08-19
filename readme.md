@@ -25,7 +25,7 @@ The platform includes a customer storefront, admin dashboard, product and order 
 - Cloudinary
 - Steadfast Courier API
 - Pathao Courier API
-- Bangladesh Delivery Corporation (BDC) API
+- BD Courier (BDC) API
 
 ---
 
