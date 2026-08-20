@@ -456,7 +456,7 @@ This repository contains the source code for:
 
 Sensitive credentials and production environment files are intentionally excluded.
 
-The client should configure their own:
+##The client should configure their own:
 
 * Database
 * Cloudinary account
