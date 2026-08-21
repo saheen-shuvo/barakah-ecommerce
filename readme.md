@@ -15,6 +15,7 @@ The platform includes a customer storefront, admin dashboard, product and order 
 - Tailwind CSS
 - DaisyUI
 - Google Tag Manager
+- React Hook Form
 - Meta Pixel
 
 ### Backend
