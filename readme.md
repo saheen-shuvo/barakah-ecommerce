@@ -15,6 +15,7 @@ The platform includes a customer storefront, admin dashboard, product and order 
 - Tailwind CSS
 - DaisyUI
 - Google Tag Manager
+- React Hook Form
 - Meta Pixel
 
 ### Backend
@@ -25,7 +26,7 @@ The platform includes a customer storefront, admin dashboard, product and order 
 - Cloudinary
 - Steadfast Courier API
 - Pathao Courier API
-- Bangladesh Delivery Corporation (BDC) API
+- BD Courier (BDC) API
 
 ---
 
@@ -456,7 +457,7 @@ This repository contains the source code for:
 
 Sensitive credentials and production environment files are intentionally excluded.
 
-The client should configure their own:
+##The client should configure their own:
 
 * Database
 * Cloudinary account
@@ -465,10 +466,3 @@ The client should configure their own:
 * Analytics accounts
 * Production environment variables
 
----
-
-# License
-
-This project is provided to the client as part of the agreed source-code handover.
-
-The usage, modification, deployment, and ownership rights are subject to the terms agreed between the developer and client.
