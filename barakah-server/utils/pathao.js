@@ -90,9 +90,6 @@ const callPathao = async (payload) => {
   return data;
 };
 
-/**
- * Extract shipment details
- */
 const extractPathaoShipmentDetails = (response) => {
   const shipment = response?.data || {};
 
