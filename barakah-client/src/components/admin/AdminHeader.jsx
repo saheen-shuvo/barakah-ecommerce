@@ -6,3 +6,5 @@ export default function AdminHeader() {
     </div>
   );
 }
+
+//Admin Header.jsx is a React functional component that renders the header section of an admin dashboard. It includes a title "Admin Dashboard" and a welcome message for the admin user. The component uses Tailwind CSS classes for styling, ensuring a responsive and visually appealing layout.
